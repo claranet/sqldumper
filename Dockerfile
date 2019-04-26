@@ -1,6 +1,6 @@
 FROM alpine
 
-LABEL version=0.1.0
+LABEL version=0.1.1
 LABEL author="Martin Weber <martin.weber@de.clara.net>"
 LABEL company="Claranet GmbH"
 
