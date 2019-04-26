@@ -1,4 +1,6 @@
 
+[![Build Status](https://travis-ci.org/claranet/sqldumper.svg?branch=master)](https://travis-ci.org/claranet/sqldumper)
+
 A small SQLDUMPER tool to create sql dumps for list of SQL containers on a standalone docker host.
 
 Just add the label "dumper.enable=true" to the mysql container to create a dump.
