@@ -20,13 +20,17 @@ for C in $CONTAINERS; do
         continue;
     fi 
 
-    if [[ ! $(docker inspect $C | jq -r '.[].Config.Labels["dumper.enable"]') ]]; then
-        continue
-    fi
-
     _CONTAINER_NAME=$(docker inspect $C | jq -r '.[].Name')
     _CONTAINER_NAME=${_CONTAINER_NAME:1}
     echo "Work on container '${_CONTAINER_NAME}' (ID: '${C}')"
+
+    _DUMPER_ENABLE="$(docker inspect $C | jq -r '.[].Config.Labels["dumper.enable"]')"
+    if [[ "${_DUMPER_ENABLE}" != "true" ]]; then
+        echo ">> Ignore ..."
+        continue
+    fi
+
+    
 
     _DUMP_USERNAME=$(docker inspect $C | jq -re '.[].Config.Labels["dumper.user"]')
     if [[ -z "${_DUMP_USERNAME}" || "${_DUMP_USERNAME}" == "null" ]]; then
