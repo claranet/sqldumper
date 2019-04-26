@@ -1,0 +1,19 @@
+language: bash
+
+services:
+  - docker
+
+branches:
+  only:
+  - master
+  - /^v\d+\.\d+\.\d+(-rc\d+)?/
+
+env:
+  - IMAGE_NAME=claranet/sqldumper
+
+script:
+  - docker build -t $IMAGE_NAME:latest .
+  - docker tag $IMAGE_NAME:latest $IMAGE_NAME:$TRAVIS_BRANCH
+  - docker login --username ${DOCKERHUB_USERNAME} --password ${DOCKERHUB_PASSWORD}
+  - docker push $IMAGE_NAME:latest 
+  - docker push $IMAGE_NAME:$TRAVIS_BRANCH
