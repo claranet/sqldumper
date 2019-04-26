@@ -9,7 +9,7 @@
 #
 # Author: Martin Weber <martin.weber@de.clara.net>
 # Company: Claranet GmbH
-# Version: 0.1.2
+# Version: 0.1.3
 #
 
 DUMPDIR=/dumps
