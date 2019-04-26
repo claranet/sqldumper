@@ -6,7 +6,7 @@ services:
 branches:
   only:
   - master
-  - /^v\d+\.\d+\.\d+(-rc\d+)?/
+  - /^v\d+\.\d+\.\d+/
 
 env:
   - IMAGE_NAME=claranet/sqldumper
