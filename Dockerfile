@@ -1,6 +1,6 @@
 FROM python:3-alpine
 
-LABEL version=0.1.4
+LABEL version=0.2.0
 LABEL author="Martin Weber <martin.weber@de.clara.net>"
 LABEL company="Claranet GmbH"
 
