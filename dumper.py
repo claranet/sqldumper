@@ -168,7 +168,7 @@ class MySQLDumper(Dumper):
 
         _args = " ".join(self._dump_args)
         if self._username:
-            _args += (" --u '%s'" % self._username)
+            _args += (" -u'%s'" % self._username)
         if self._password:
             _args += (" -p'%s'" % self._password)
         if self._database:

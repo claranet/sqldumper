@@ -1,12 +1,17 @@
-FROM alpine
+FROM python:3-alpine
 
 LABEL version=0.1.4
 LABEL author="Martin Weber <martin.weber@de.clara.net>"
 LABEL company="Claranet GmbH"
 
-RUN apk update \
- && apk add curl jq bash docker 
+ENV DUMPDIR=/dumps
+ENV RETENTION=30
 
-COPY ./mysqldump.sh /mysqldump.sh
+RUN apk update \
+ && apk add docker \
+ && pip install docker
+
+COPY ./dumper.py /dumper.py
 VOLUME /dumps
-ENTRYPOINT [ "/mysqldump.sh" ]
+
+ENTRYPOINT [ "/usr/bin/python3", "/dumper.py" ]
