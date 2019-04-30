@@ -19,10 +19,22 @@ Labels to use
 | dumper.args.*    | Arguments to pass for dump |
 | dumper.env.*     | Environment variables to pass for dump |
 
+Environemnt Variables
+
+| Name      | Description |
+|-----------|-------------|
+| SCHEDULER | Cron notation when to run dumps (default: 0 6 * * *) |
+
+
 TL;DR
 -----
 
-Run
+Run as service
 
-    docker run --rm --name sqldumper -v /var/run/docker.sock:/var/run/docker.sock -v $PWD/dumps:/dumps claranet/sqldumper
+    docker run --rm --name sqldumper -v /var/run/docker.sock:/var/run/docker.sock -v /srv/sqldumper/dumps:/dumps claranet/sqldumper
+
+
+Start it manually
+
+    docker run --rm --name sqldumper -v /var/run/docker.sock:/var/run/docker.sock -v $PWD/dumps:/dumps --entrypoint "/dumper.py" claranet/sqldumper
     

@@ -1,3 +1,4 @@
+#!/usr/local/bin/python
 
 """
 dumper.py - Create Database dumps from docker containers
