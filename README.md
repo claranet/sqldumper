@@ -5,6 +5,8 @@ Running some services on a Docker host with a Database for each sercice it can b
 
 This Containter shold help to solve this problem a little bit. You have only to create one cron job on the docker host to dump the databases.
 
+![Workflow](docs/flow.png)
+
 This sqldumper connect to the docker api socket and searches for containers having the label "dumper.enable=true". If a container is found, the script will use the dump command on this container. The sqldumper is trying to get the Information like username, password and database from the container ENV Variables pr you can put this information with labels to the dumper.
 
 Labels to use
