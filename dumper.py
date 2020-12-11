@@ -24,7 +24,7 @@ With Database type "FREE" you can write your own dump command!
 __author__     = "Martin Weber <martin.weber@de.clara.net>"
 __license__    = "Apache License v2.0"
 
-__version__    = "0.3.0"
+__version__    = "0.3.1"
 __maintainer__ = "Martin Weber"
 __email__      = "martin.weber@de.clara.net"
 __status__     = "Production"
