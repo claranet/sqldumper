@@ -120,7 +120,7 @@ class Dumper:
 
     def _executeDump(self, command):
         log.debug("Execute dump - %s" % command)
-        e_code, gen = self._container.exec_run(cmd = command, stream = True, environment=self._dump_env)
+        e_code, gen = self._container.exec_run(cmd = command, stream = True, environment=self._dump_env, stderr = False)
 
         f = gzip.open(self.filename, "wb")
         for item in gen:
