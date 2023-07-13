@@ -35,5 +35,5 @@ jobs:
           push: true
           tags: |
             claranet/sqldumper:latest
-            claranet/sqldumper:v0.3.1
+            claranet/sqldumper:v0.4.0
           
