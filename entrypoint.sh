@@ -1,7 +1,17 @@
 #!/bin/sh
 
-echo "${SCHEDULER}         /dumper.py" > /var/spool/cron/crontabs/root
+echo $1
 
-cat /var/spool/cron/crontabs/root
+if [ "$1" -eq "cron" ]; then
 
-/usr/sbin/crond -f
+  echo "${SCHEDULER}        /usr/local/bin/dump" > /var/spool/cron/crontabs/root
+
+  cat /var/spool/cron/crontabs/root
+
+  /usr/sbin/crond -f
+
+else
+
+  $@
+
+fi

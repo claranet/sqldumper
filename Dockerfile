@@ -12,9 +12,10 @@ RUN apk update \
  && apk add docker \
  && pip install docker
 
-COPY ./dumper.py /dumper.py
+COPY ./dumper.py /usr/local/bin/dump
 COPY ./entrypoint.sh /entrypoint.sh
 
 VOLUME /dumps
 
 ENTRYPOINT [ "/entrypoint.sh" ]
+CMD [ "cron" ]

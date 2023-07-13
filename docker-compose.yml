@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  dump:
+    build: .
+    command: /usr/local/bin/dump
+    profiles: [ "manual" ]
+    image: local/sqldumper
+    volumes:
+      - ./dumps/:/dumps
+      - /var/run/docker.sock:/var/run/docker.sock
+    
+  mysql:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=dummy
+      - MYSQL_USER=dummy
+      - MYSQL_PASSWORD=dummy
+      - MYSQL_DATABASE=mysql_test
+    volumes:
+      - ./sampledata/mysql.sql:/docker-entrypoint-initdb.d/data.sql
+    labels:
+      - dumper.enable=true
+      - dumper.type=mysql
+  mariadb:
+    image: mariadb
+    environment:
+      - MARIADB_ROOT_PASSWORD=dummy
+      - MARIADB_USER=dummy
+      - MARIADB_PASSWORD=dummy
+      - MARIADB_DATABASE=mariadb_test
+    volumes:
+      - ./sampledata/mysql.sql:/docker-entrypoint-initdb.d/data.sql
+    labels:
+      - dumper.enable=true
+      - dumper.type=mariadb

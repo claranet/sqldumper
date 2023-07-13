@@ -14,6 +14,7 @@ Labels to use
 | Name            | Description |
 |-----------------|------------|
 | dumper.enable   | Set this to true to enable dumping for the container |
+| dumper.type     | Set Database Type to Dump |
 | dumper.username | User to dump the Database. |
 | dumper.password | Users password to dump the database. |
 | dumper.database | Database to dump. |

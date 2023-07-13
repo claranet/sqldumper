@@ -150,6 +150,39 @@ class Dumper:
     def dump(self):
         pass
 
+class MariaDBDumper(Dumper):
+    def dump(self):
+        log.debug("Dump MySQL")
+
+        """
+        Dump MySQL/MariaDB
+        """
+        
+        if len(self._username) == 0 and "MYSQL_USER" in self._container.environments:
+            self._username = self._container.environments["MYSQL_USER"]
+        if len(self._password) == 0 and "MYSQL_PASSWORD" in self._container.environments:
+            self._password = self._container.environments["MYSQL_PASSWORD"]
+        if len(self._database) == 0 and "MYSQL_DATABASE" in self._container.environments:
+            self._database = self._container.environments["MYSQL_DATABASE"]
+        
+        if len(self._username) == 0 and "MARIADB_USER" in self._container.environments:
+            self._username = self._container.environments["MARIADB_USER"]
+        if len(self._password) == 0 and "MARIADB_PASSWORD" in self._container.environments:
+            self._password = self._container.environments["MARIADB_PASSWORD"]
+        if len(self._database) == 0 and "MARIADB_DATABASE" in self._container.environments:
+            self._database = self._container.environments["MARIADB_DATABASE"]
+
+        _args = " ".join(self._dump_args)
+        if self._username:
+            _args += (" -u'%s'" % self._username)
+        if self._password:
+            _args += (" -p'%s'" % self._password)
+        if self._database:
+            _args += (" %s" % self._database)
+
+        _command = "mariadb-dump %s" % _args
+        self._executeDump(_command)
+
 class MySQLDumper(Dumper):
     def dump(self):
         log.debug("Dump MySQL")
@@ -264,8 +297,10 @@ def main():
         log.info("Database Type: %s" % (_type))
 
         dumper = None
-        if _type in ["mysql", "maria", "mariadb"]:
+        if _type in ["mysql"]:
             dumper = MySQLDumper(container)
+        elif _type in ["maria", "mariadb"]:
+            dumper = MariaDBDumper(container)
         elif _type in ["postgres", "postgresql"]:
              dumper = PostgresDumper(container)
         elif _type in ["mongo", "mongodb"]:
