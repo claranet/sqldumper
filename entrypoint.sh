@@ -2,7 +2,7 @@
 
 echo $1
 
-if [ "$1" -eq "cron" ]; then
+if [[ "$1" == "cron" ]]; then
 
   echo "${SCHEDULER}        /usr/local/bin/dump" > /var/spool/cron/crontabs/root
 
